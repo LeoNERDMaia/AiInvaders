@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.scss",
+              "src/assets/app.general.scss"
             ],
             "scripts": []
           },
@@ -92,7 +94,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.scss",
+              "src/assets/app.general.scss"
             ],
             "scripts": []
           }
@@ -121,8 +125,13 @@
               "devServerTarget": "AiInvaders:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "AiInvaders"
 }

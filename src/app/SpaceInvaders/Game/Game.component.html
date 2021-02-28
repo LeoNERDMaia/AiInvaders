@@ -1,0 +1,5 @@
+<app-PlayerController *ngIf="!AIControlled" [shipControl]="this"></app-PlayerController>
+<div class="game-frame">
+  <app-GameView [game]="game"></app-GameView>
+</div>
+<div>{{input0}} {{input1}} {{input2}} {{input3}}</div>

@@ -1,0 +1,33 @@
+<mat-card class="dialog">
+  <mat-card-title>
+    <h1>Sign in</h1>
+  </mat-card-title>
+  <mat-card-content>
+    <img [src]="userService.user?.photoURL || defaultUrl" />
+
+    <div *ngIf="userService.logged">
+      <h2>{{ userService.user?.name }}</h2>
+    </div>
+    <div *ngIf="!userService.logged">
+      <p>
+        Welcome! You need to login with your <b>Google</b> account before start
+        your works.
+      </p>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div *ngIf="userService.logged">
+      <button mat-raised-button color="primary" (click)="onLogOut()">
+        Not you? Log out
+      </button>
+      <button mat-raised-button color="accent" (click)="onContinue()">
+        Continue
+      </button>
+    </div>
+    <div *ngIf="!userService.logged">
+      <button mat-raised-button color="accent" (click)="onLogIn()">
+        Log in
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

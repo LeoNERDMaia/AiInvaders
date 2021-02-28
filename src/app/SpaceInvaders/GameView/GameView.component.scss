@@ -1,0 +1,25 @@
+.background {
+  fill: rgb(0, 0, 70);
+}
+
+.border {
+  fill: transparent;
+  stroke: lightgoldenrodyellow;
+  stroke-width: 3px;
+}
+
+.ship {
+  transform-origin: center;
+}
+
+.alien {
+  transform-origin: center;
+}
+
+.shieldBattery{
+  transform-origin: center;
+}
+
+.fire {
+  transform-origin: center;
+}

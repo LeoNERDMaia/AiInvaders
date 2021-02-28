@@ -1,0 +1,28 @@
+<mat-card class="dialog">
+  <mat-card-title>
+    <h1>Projects</h1>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="project_form">
+      <mat-form-field class="field">
+        <mat-label>Project Name</mat-label>
+        <input matInput placeholder="name" [(ngModel)]="project.name">
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Hidden layers</mat-label>
+        <input matInput placeholder="2" [(ngModel)]="hiddenLayers">
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Hidden layers size</mat-label>
+        <input matInput placeholder="7" [(ngModel)]="hiddenSize">
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div>
+      <button mat-raised-button color="accent" (click)="onAddProject()">
+        Create Project
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

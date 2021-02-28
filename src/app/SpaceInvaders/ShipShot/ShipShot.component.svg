@@ -1,0 +1,55 @@
+<svg viewBox="0 0 32 64">
+  <defs id="defs2">
+    <linearGradient
+       id="linearGradient861">
+      <stop
+         style="stop-color:#ff530c;stop-opacity:1"
+         offset="0"
+         id="stop857" />
+      <stop
+         style="stop-color:#fffd0c;stop-opacity:1"
+         offset="1"
+         id="stop859" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient844">
+      <stop
+         style="stop-color:#ff0c0c;stop-opacity:1"
+         offset="0"
+         id="stop840" />
+      <stop
+         style="stop-color:#fffd0c;stop-opacity:0.33467743"
+         offset="1"
+         id="stop842" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient844"
+       id="linearGradient846"
+       x1="15.888596"
+       y1="7.9023304"
+       x2="15.888596"
+       y2="63.318737"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       xlink:href="#linearGradient861"
+       id="radialGradient863"
+       cx="15.629635"
+       cy="16.963058"
+       fx="15.629635"
+       fy="16.963058"
+       r="13.302513"
+       gradientTransform="matrix(0.0032142,-0.91945357,0.65585804,0.00229273,4.454038,31.294891)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="layer1">
+    <path
+       style="fill:url(#linearGradient846);stroke:none;stroke-width:0.94488189;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 5.1446475,7.7829283 H 27.306206 c 0,0 -2.25248,4.7834497 -5.672304,22.0296437 -1.929281,9.729379 -5.745306,33.506166 -5.745306,33.506166 0,0 -3.644392,-23.610802 -5.467387,-33.638079 C 7.3867417,12.989753 5.1446475,7.7829283 5.1446475,7.7829283 Z"
+       id="path836" />
+    <path
+       id="path833"
+       style="fill:url(#radialGradient863);stroke:#ffffff;stroke-width:3.47452;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       d="m 27.194887,12.333963 c -0.0061,2.630437 0.145534,5.158327 -1.654627,10.697445 l -1.683858,5.181256 -2.331058,-7.183219 -5.768662,7.581118 -2.86628,-7.245072 -3.4655474,7.255045 -2.0891758,-4.118908 C 5.7206979,21.317617 3.9606314,18.886322 4.0687392,12.861619 4.068739,4.2424757 13.065183,1.8262016 16.027555,1.8262005 c 2.830459,-1.1e-6 11.167332,1.8886187 11.167332,10.5077625 z" />
+  </g>
+</svg>

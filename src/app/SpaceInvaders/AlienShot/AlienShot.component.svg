@@ -1,0 +1,57 @@
+<svg viewBox="0 0 32 64">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient869">
+      <stop
+         style="stop-color:#0cff1a;stop-opacity:1"
+         offset="0"
+         id="stop857" />
+      <stop
+         style="stop-color:#b9ff08;stop-opacity:1"
+         offset="1"
+         id="stop859" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient849">
+      <stop
+         style="stop-color:#96be3b;stop-opacity:1"
+         offset="0"
+         id="stop840" />
+      <stop
+         style="stop-color:#35e82a;stop-opacity:0.02352941"
+         offset="1"
+         id="stop842" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient849"
+       id="linearGradient846"
+       x1="15.888596"
+       y1="7.9023304"
+       x2="15.888596"
+       y2="63.318737"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,0,63.407679)" />
+    <radialGradient
+       xlink:href="#linearGradient869"
+       id="radialGradient863"
+       cx="15.629635"
+       cy="16.963058"
+       fx="15.629635"
+       fy="16.963058"
+       r="13.302513"
+       gradientTransform="matrix(0.0032142,0.91945357,0.65585804,-0.00229273,4.454038,32.112788)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="layer1">
+    <path
+       style="fill:url(#linearGradient846);fill-opacity:1;stroke:none;stroke-width:0.944882;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 5.1446475,55.62475 H 27.306206 c 0,0 -2.25248,-4.783449 -5.672304,-22.029643 -1.929281,-9.729379 -5.745306,-33.50616648 -5.745306,-33.50616648 0,0 -3.644392,23.61080248 -5.467387,33.63807948 C 7.3867417,50.417926 5.1446475,55.62475 5.1446475,55.62475 Z"
+       id="path836" />
+    <path
+       id="path833"
+       style="fill:url(#radialGradient863);fill-opacity:1;stroke:#1ab037;stroke-width:3.47452;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 29.899125,52.52477 c 0.65347,-2.300651 -0.316166,-3.047702 -0.203573,-8.652777 -1.637837,-2.784146 -4.494537,1.753967 -6.563106,-0.4382 -3.793287,-4.599709 -6.181944,-0.684382 -8.969987,-3.055609 -2.812112,-1.693441 -5.0543624,-0.708244 -6.6179212,0.143517 -1.734051,0.944638 -1.2376655,1.542451 -2.5833117,3.265169 -2.954319,1.144557 -3.6603973,1.474875 -2.7392834,6.825147 -2e-7,8.619143 10.8432403,10.96946 13.8056123,10.969461 2.830459,1e-6 14.465183,-2.416275 13.87157,-9.056708 z" />
+  </g>
+</svg>
