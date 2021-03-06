@@ -20,7 +20,8 @@ export class GameController {
 
     this.doAlienFire()
 
-    this.doShipFireCollide()
+    if (this.game.shipShot.active)
+      this.doShipFireCollide()
     this.doAlienFiresCollide()
 
     this.game.currentAlienTime--
@@ -29,6 +30,7 @@ export class GameController {
       this.game.currentAlienTime = this.game.alienTime
       this.game.alienTime = this.game.alienTime < 10 ? 10 : this.game.alienTime - 1
     }
+    this.game.score += 1
     return true
   }
 
@@ -49,13 +51,22 @@ export class GameController {
     return vertical && horizontal
   }
 
+  private isAligned(sprite1: Sprite, sprite2: Sprite) {
+    let LE1 = sprite1.x - sprite1.width / 2
+    let RE1 = sprite1.x + sprite1.width / 2
+    let LE2 = sprite2.x - sprite2.width / 2
+    let RE2 = sprite2.x + sprite2.width / 2
+
+    return (LE1 <= RE2 && RE1 >= LE2)
+  }
+
   private moveShipLeft() {
-    if (this.game.ship.x > 0)
+    if (this.game.ship.x > 0.1)
       this.game.ship.x -= this.game.ship.speed
   }
 
   private moveShipRight() {
-    if (this.game.ship.x < 1)
+    if (this.game.ship.x < 0.9)
       this.game.ship.x += this.game.ship.speed
   }
 
@@ -76,7 +87,7 @@ export class GameController {
       if (this.isColliding(this.game.shipShot, alien)) {
         this.game.aliens.splice(this.game.aliens.indexOf(alien), 1)
         this.game.shipShot.active = false
-        this.game.score ++
+        this.game.score += 1000
       }
     })
 
@@ -125,6 +136,8 @@ export class GameController {
     this.game.aliens.forEach(alien => {
       if (!shot.active) {
         let willFire = Math.random()
+        if (this.isAligned(alien, this.game.ship))
+          willFire *= 0.01
         if (willFire < 0.05) {
           shot.x = alien.x
           shot.y = alien.y
@@ -137,26 +150,47 @@ export class GameController {
   private moveAliens() {
     let revert: boolean = false
 
-    if ((this.game.horizontalPosition > Game.horizontalLimitRight) || (this.game.horizontalPosition < Game.horizontalLimitLeft)) {
+    let leftEnemy = 1
+    let rightEnemy = 0
+    this.game.aliens.forEach(alien => {
+      if (alien.x < leftEnemy)
+        leftEnemy = alien.x
+      if (alien.x > rightEnemy)
+        rightEnemy = alien.x
+    })
+
+    if ((rightEnemy > this.game.horizontalLimitRight) || (leftEnemy < this.game.horizontalLimitLeft)) {
       this.game.horizontalSpeed *= -1
       revert = true
     }
-    this.game.horizontalPosition += this.game.horizontalSpeed
+    //this.game.horizontalPosition += this.game.horizontalSpeed
 
-    if (!revert) {
+    this.game.aliens.forEach(alien => {
+      alien.x += this.game.horizontalSpeed
+      alien.flipped *= -1
+    })
+    /*if (!revert) {
       this.game.aliens.forEach(alien => {
         alien.x += this.game.horizontalSpeed
         alien.flipped *= -1
       })
-    } else {
+    } else {*/
+    let ceilingZero: boolean = false
+    if (revert) {
       this.game.aliens.forEach(alien => {
           alien.y += Game.verticalSpeed
           alien.flipped *= -1
-          if (alien.y > 0.9)
-            this.game.active = false
-          if (alien.y > 0.7)
+          if (alien.y > 0.9) {
+            ceilingZero = true
+          }
+          if (alien.y > 0.7) {
             this.game.shields = []
+          }
         })
+    }
+    if (ceilingZero) {
+      //this.game.score -= 10000
+      this.game.active = false
     }
   }
 }

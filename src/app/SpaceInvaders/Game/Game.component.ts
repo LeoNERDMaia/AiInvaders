@@ -9,38 +9,50 @@ import {ShipControl } from '../../system/ShipControl'
   templateUrl: './Game.component.html',
   styleUrls: ['./Game.component.scss']
 })
-export class GameComponent extends ShipControl implements OnInit {
+export class GameComponent implements OnInit, ShipControl {
+
+  left: boolean = false;
+  right: boolean = false;
+  fire: boolean = false;
 
   @Input() AIControlled: boolean = false
+  @Input() game: Game
+  @Input() showResults: boolean = true
 
-  game: Game = new Game()
-  gameController: GameController = new GameController()
-  gameAnalyser: GameAnalyzer = new GameAnalyzer()
+  public gameController: GameController = new GameController()
+  public gameAnalyser: GameAnalyzer = new GameAnalyzer()
 
   input0: number = 0
   input1: number = 0
   input2: number = 0
   input3: number = 0
+  input4: number = 0
 
   gameRun
 
   constructor() {
-    super()
   }
-
   ngOnInit() {
     this.gameController.game = this.game
     this.gameAnalyser.game = this.game
-    this.gameRun = setInterval(() => {
-      this.gameController.doGameMove(this.left, this.right, this.fire)
-      this.input0 = this.gameAnalyser.closestEnemyDistance()
-      this.input1 = this.gameAnalyser.enemyInSight()
-      this.input2 = this.gameAnalyser.lineOfFire()
-      this.input3 = this.gameAnalyser.protected()
-    }, 15)
+    if (!this.AIControlled)
+      this.gameRun = setInterval(() => {
+        this.doGameMove()
+      }, 15)
   }
 
   ngDestroy() {
+    if (!this.AIControlled)
+      clearInterval(this.gameRun)
+  }
+
+  public doGameMove() {
+    this.gameController.doGameMove(this.left, this.right, this.fire)
+    this.input0 = this.gameAnalyser.closestEnemyDistance()
+    this.input1 = this.gameAnalyser.mostEnemies()
+    this.input2 = this.gameAnalyser.enemyInSight()
+    this.input3 = this.gameAnalyser.lineOfFire()
+    this.input4 = this.gameAnalyser.protected()
   }
 
 }

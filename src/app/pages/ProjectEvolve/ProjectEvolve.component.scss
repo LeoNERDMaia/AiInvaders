@@ -1,0 +1,73 @@
+h1 {
+  align-self: center;
+  font-weight: bolder;
+}
+
+.chartContainer {
+  width: 400px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  justify-items: stretch;
+}
+
+.chart {
+  width: 400px;
+  height: 200px;
+}
+
+.project {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  color: white;
+}
+.screen {
+  width: 95vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-items: center;
+}
+.games {
+  margin: 5px;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.invisible {
+  width: 75%;
+  display: none;
+}
+.data-container {
+  margin: 5px;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.data {
+  width: 100%;
+  background-color: black;
+  color: goldenrod;
+}
+
+.gamesChart {
+  @extend .chart;
+  fill: none;
+  stroke: blue;
+  stroke-width: 2;
+}
+
+.generationChart {
+  @extend .chart;
+  fill: none;
+  stroke: red;
+  stroke-width: 2;
+}

@@ -1,7 +1,5 @@
-import { HostListener, Injectable } from "@angular/core"
-
-export abstract class ShipControl {
-  public left: boolean = false
-  public right: boolean = false
-  public fire: boolean = false
+export interface ShipControl {
+  left: boolean
+  right: boolean
+  fire: boolean
 }

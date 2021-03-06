@@ -21,13 +21,10 @@ export class UserProjectsService extends Store<Project> {
   public updateProject(project: Project): Observable<Project> {
     project['$id'] = project.name
     let obj = {...project}
-    obj.mlpLow = {...project.mlpLow}
+    obj.mlpChampion = {...project.mlpChampion}
+    obj.mlpBest = {...project.mlpBest}
 
     return this.change(obj)
-    /*return this.change(obj).pipe(map(value => {
-      this.changeAt(project.name + "/mlp", mlpLow).subscribe()
-      return value
-    }))*/
   }
 
   public all(): Observable<Array<Project>> {

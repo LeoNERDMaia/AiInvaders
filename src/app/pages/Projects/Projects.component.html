@@ -6,6 +6,9 @@
     <div class="project_list">
       <div class="project_line" *ngFor="let project of projects" >
         <label>{{project.name}}</label>
+        <button mat-raised-button color="primary" (click)="onEvolveProject(project.name)">
+          Evolve
+        </button>
       </div>
     </div>
   </mat-card-content>
@@ -17,4 +20,3 @@
     </div>
   </mat-card-actions>
 </mat-card>
-<app-Game></app-Game>

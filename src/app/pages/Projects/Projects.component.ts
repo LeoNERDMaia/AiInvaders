@@ -1,3 +1,4 @@
+import { Game } from './../../model/game';
 import { Router } from '@angular/router';
 import { UserProjectsService } from './../../service/UserProjects.service';
 import { Component, OnInit } from '@angular/core';
@@ -24,6 +25,10 @@ export class ProjectsComponent implements OnInit {
 
   onNewProject() {
     this.router.navigate(["editProject"])
+  }
+
+  onEvolveProject(projectName: string) {
+    this.router.navigate([`evolveProject/${projectName}`])
   }
 
 }

@@ -1,3 +1,6 @@
+import { ScoreChartComponent } from './ScoreChart/ScoreChart.component';
+import { GameComponent } from './../SpaceInvaders/Game/Game.component';
+import { ProjectEvolveComponent } from './ProjectEvolve/ProjectEvolve.component';
 import { SpaceInvadersModule } from './../SpaceInvaders/SpaceInvaders.module';
 import { EditProjectComponent } from './EditProject/EditProject.component';
 import { ProjectsComponent } from './Projects/Projects.component';
@@ -16,7 +19,17 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SpaceInvadersModule
   ],
-  declarations: [LoginComponent, ProjectsComponent, EditProjectComponent],
-  exports: [LoginComponent, ProjectsComponent, EditProjectComponent]
+  declarations: [
+    LoginComponent,
+    ProjectsComponent,
+    EditProjectComponent,
+    ProjectEvolveComponent,
+    ScoreChartComponent
+  ],
+  exports: [
+    LoginComponent,
+    ProjectsComponent,
+    EditProjectComponent
+  ]
 })
 export class PagesModule { }

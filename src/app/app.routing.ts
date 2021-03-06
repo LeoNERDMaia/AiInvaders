@@ -1,3 +1,4 @@
+import { ProjectEvolveComponent } from './pages/ProjectEvolve/ProjectEvolve.component';
 import { EditProjectComponent } from './pages/EditProject/EditProject.component';
 import { AuthGuard } from './service/security.guard';
 import { ProjectsComponent } from './pages/Projects/Projects.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard]},
-  { path: 'editProject', component: EditProjectComponent, canActivate: [AuthGuard]}
+  { path: 'editProject', component: EditProjectComponent, canActivate: [AuthGuard]},
+  { path: 'evolveProject/:project', component: ProjectEvolveComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({

@@ -14,8 +14,6 @@ export class PlayerControllerComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
   @HostListener('window:keydown', ['$event'])
   keyDown($event) {
     let key: string = $event.key

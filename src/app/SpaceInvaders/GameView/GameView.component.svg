@@ -1,7 +1,6 @@
 <svg viewBox = "0 0 512 512">
-
   <rect class="background" x=0 y=0 width=100% height=100%/>
-
+  <g *ngIf="showGame">
   <g *ngFor="let shield of game.shields" comp-shieldbattery
     class="shieldBattery" comp-shieldbattery attr.transform="translate({{shield.x * 512 - 256}}, {{shield.y * 512 - 256}}) scale(0.0625)"/>
 
@@ -15,6 +14,6 @@
   <g *ngIf="game.shipShot.active" class="fire" attr.transform="translate({{game.shipShot.x * 512 - 256}}, {{game.shipShot.y * 512 - 256}}) scale(0.0625)" comp-shipshot/>
 
   <g class="ship" attr.transform="translate({{game.ship.x * 512 - 256}}, {{game.ship.y * 512 - 256}}) scale(0.0625)" comp-ship/>
-
+  </g>
   <rect class="border" x=0 y=0 width=100% height=100%/>
 </svg>

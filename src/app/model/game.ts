@@ -1,11 +1,9 @@
 export class Game {
   public static rows: number = 5
   public static columns: number = 10
-  public static spacing: number = 0.075
+  public static spacing: number = 0.1
   public static shieldPositionY: number = 0.75
   public static verticalSpeed: number = 0.05
-  public static horizontalLimitLeft: number = 0.075
-  public static horizontalLimitRight: number = 0.2
   public static alienStartTime: number = 100
   public static maxAlienFire: number = 2
 
@@ -19,6 +17,8 @@ export class Game {
   public alienTime = Game.alienStartTime
   public currentAlienTime = Game.alienStartTime
   public shields: ShieldBattery[] = []
+  public horizontalLimitLeft: number = 0.07
+  public horizontalLimitRight: number = 0.95
 
   public active: boolean = true
   public score: number = 0
@@ -87,12 +87,12 @@ export class Game {
 export abstract class Sprite {
   public x: number = 0.5
   public y: number = 0.5
-  public width: number = 0.02
-  public height: number = 0.02
+  public width: number = 0.05
+  public height: number = 0.05
 }
 
 export class Ship extends Sprite {
-  public speed: number = 0.025
+  public speed: number = 0.01
 
   constructor() {
     super()
@@ -106,6 +106,11 @@ export class Alien extends Sprite {
   public speed: number = 0.05
   public flipTime: number = 2000
   public flipped: number = 1
+
+  constructor() {
+    super()
+    this.width = 0.03
+  }
 }
 
 export class ShieldBattery extends Sprite {
@@ -117,10 +122,10 @@ export class ShieldBattery extends Sprite {
 
 export class ShipShot extends Sprite {
   public active: boolean = false
-  public shotSpeed: number = 0.02
+  public shotSpeed: number = 0.005
 }
 
 export class AlienShot extends Sprite {
   public active: boolean = false
-  public shotSpeed: number = 0.01
+  public shotSpeed: number = 0.005
 }

@@ -22,8 +22,10 @@ export class EditProjectComponent implements OnInit {
 
   onAddProject() {
     let hiddensCount: number[] = []
-    let mlpData: MultiLayerPerceptronData = MultiLayerPerceptron.buildRandomNetwork(Project.inputSize, Project.outputSize, parseInt(this.hiddenLayers), parseInt(this.hiddenSize), 0)
-    this.project.mlpLow = mlpData
+    let mlpChampion: MultiLayerPerceptronData = MultiLayerPerceptron.buildRandomNetwork(Project.inputSize, Project.outputSize, parseInt(this.hiddenLayers), parseInt(this.hiddenSize), 0)
+    let mlpBest: MultiLayerPerceptronData = MultiLayerPerceptron.buildRandomNetwork(Project.inputSize, Project.outputSize, parseInt(this.hiddenLayers), parseInt(this.hiddenSize), 0)
+    this.project.mlpChampion = mlpChampion
+    this.project.mlpBest = mlpBest
     this.userProjectsSerivce.updateProject(this.project).subscribe(value =>
       this.back())
   }

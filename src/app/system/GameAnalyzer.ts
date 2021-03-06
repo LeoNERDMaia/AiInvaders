@@ -16,12 +16,30 @@ export class GameAnalyzer {
     return distanceX
   }
 
+  public mostEnemies(): number {
+    let mostOfEnemies: number = 0
+    this.game.aliens.forEach(alien => {
+      mostOfEnemies += (alien.x - this.game.ship.x) / this.game.aliens.length
+    })
+    return mostOfEnemies
+  }
+
   public protected(): number {
     return this.alignedAmong(this.game.shields)
   }
 
   public lineOfFire(): number {
-    return this.alignedAmong(this.game.alienShots)
+    let distanceX: number = 1
+    let distanceY: number = 1
+    this.game.alienShots.forEach(shot => {
+      if (this.game.ship.y - shot.y < distanceY) {
+        distanceY = this.game.ship.y - shot.y
+        if (this.game.ship.x - shot.x < Math.abs(distanceX))
+          distanceX = this.game.ship.x - shot.x
+      }
+    })
+    return distanceX
+    //return this.alignedAmong(this.game.alienShots)
   }
 
   public enemyInSight(): number {

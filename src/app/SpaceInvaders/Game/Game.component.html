@@ -1,5 +1,5 @@
 <app-PlayerController *ngIf="!AIControlled" [shipControl]="this"></app-PlayerController>
 <div class="game-frame">
-  <app-GameView [game]="game"></app-GameView>
+  <app-GameView [showGame]="showResults" [game]="game"></app-GameView>
 </div>
-<div>{{input0}} {{input1}} {{input2}} {{input3}}</div>
+<div>{{input0 | number:'1.4-4'}} {{input1 | number:'1.4-4'}} {{input2 | number:'1.4-4'}} {{input3 | number:'1.4-4'}} {{input4 | number:'1.4-4'}}</div>

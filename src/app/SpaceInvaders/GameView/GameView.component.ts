@@ -9,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GameViewComponent implements OnInit {
 
   @Input() game: Game
+  @Input() showGame: boolean = true
 
   constructor() { }
 

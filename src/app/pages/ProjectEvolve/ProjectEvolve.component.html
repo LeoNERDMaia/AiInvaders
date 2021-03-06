@@ -1,0 +1,51 @@
+<div class="project">
+<h1>
+  Project: {{project.name}}
+</h1>
+<div class="screen">
+  <div class="chartContainer">
+    <span>Games Chart</span>
+    <app-ScoreChart class="gamesChart" #scoreChart></app-ScoreChart>
+  </div>
+  <div class="chartContainer">
+    <span>Generation Chart</span>
+    <app-ScoreChart class="generationChart" #generationChart></app-ScoreChart>
+  </div>
+  <div class="data-container">
+    <table class="data">
+      <tr>
+        <td>Generation</td>
+        <td>Champion Score</td>
+        <td>Best Score</td>
+      </tr>
+      <tr>
+        <td>{{generationController?.generation}}</td>
+        <td>{{generationController?.champion.score}}</td>
+        <td>{{generationController?.best.score}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<mat-slide-toggle [(ngModel)]="showResults">View Data</mat-slide-toggle>
+<div class="screen">
+  <div [ngClass]="{'games': showResults, 'invisible': !showResults}">
+    <div *ngFor="let game of games">
+      <app-Game [game]="game" [AIControlled]="true" [showResults]="showResults" #gameComponent></app-Game>
+    </div>
+  </div>
+  <div class="data-container">
+      <table class="data">
+        <tr>
+          <td>Move</td>
+          <td>Fire</td>
+          <td>Score</td>
+        </tr>
+        <tr *ngFor="let aiController of aIControllers">
+          <td>{{aiController.mlpData.outputs[0] | number:'1.4-4'}}</td>
+          <td>{{aiController.mlpData.outputs[1] | number:'1.4-4'}}</td>
+          <td>{{aiController.mlpData.score}}</td>
+        </tr>
+      </table>
+  </div>
+</div>
+</div>

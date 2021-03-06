@@ -9,6 +9,7 @@ export class MultiLayerPerceptronData {
   bias: number = 0
   outputSize: number
   outputs: number[] = []
+  score: number = 0
 }
 
 export class MultiLayerPerceptron {
@@ -80,9 +81,12 @@ export class MultiLayerPerceptron {
       this.propagateLayer(layer)
 
     // load the last layer values to the output layer
-    this.data.outputs.forEach((value: number, index: number) => {
+    /*this.data.outputs.forEach((value: number, index: number) => {
       this.data.layerValues[MultiLayerPerceptron.calcNeuronPosition(this.data, this.data.hiddenCount + 1, index)] = value
-    })
+    })*/
+    for (let output = 0; output < this.data.outputs.length; output ++) {
+      this.data.outputs[output] = this.data.layerValues[MultiLayerPerceptron.calcNeuronPosition(this.data, this.data.hiddenCount + 1, output)]
+    }
   }
 
   private propagateLayer(layer: number) {
