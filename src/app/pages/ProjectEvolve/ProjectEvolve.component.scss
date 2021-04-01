@@ -25,6 +25,7 @@ h1 {
   justify-items: center;
   color: white;
 }
+
 .screen {
   width: 95vw;
   display: flex;
@@ -32,6 +33,7 @@ h1 {
   justify-content: space-evenly;
   justify-items: center;
 }
+
 .games {
   margin: 5px;
   width: 75%;
@@ -44,6 +46,7 @@ h1 {
   width: 75%;
   display: none;
 }
+
 .data-container {
   margin: 5px;
   width: 25%;
@@ -70,4 +73,14 @@ h1 {
   fill: none;
   stroke: red;
   stroke-width: 2;
+}
+
+.controls {
+  margin: 5px;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }

@@ -1,3 +1,5 @@
+import { AIGameComponent } from './AIGame/AIGame.component';
+import { PlayerGameComponent } from './PlayerGame/PlayerGame.component';
 import { ScoreChartComponent } from './ScoreChart/ScoreChart.component';
 import { GameComponent } from './../SpaceInvaders/Game/Game.component';
 import { ProjectEvolveComponent } from './ProjectEvolve/ProjectEvolve.component';
@@ -24,12 +26,16 @@ import { FormsModule } from '@angular/forms';
     ProjectsComponent,
     EditProjectComponent,
     ProjectEvolveComponent,
-    ScoreChartComponent
+    ScoreChartComponent,
+    PlayerGameComponent,
+    AIGameComponent
   ],
   exports: [
     LoginComponent,
     ProjectsComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    PlayerGameComponent,
+    AIGameComponent
   ]
 })
 export class PagesModule { }

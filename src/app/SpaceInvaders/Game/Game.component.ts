@@ -33,6 +33,10 @@ export class GameComponent implements OnInit, ShipControl {
   constructor() {
   }
   ngOnInit() {
+    this.startProcedure()
+  }
+
+  private startProcedure() {
     this.gameController.game = this.game
     this.gameAnalyser.game = this.game
     if (!this.AIControlled)
@@ -44,6 +48,10 @@ export class GameComponent implements OnInit, ShipControl {
   ngDestroy() {
     if (!this.AIControlled)
       clearInterval(this.gameRun)
+  }
+
+  public restart() {
+    this.startProcedure()
   }
 
   public doGameMove() {

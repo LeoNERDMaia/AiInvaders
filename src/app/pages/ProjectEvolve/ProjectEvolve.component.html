@@ -26,7 +26,15 @@
     </table>
   </div>
 </div>
-<mat-slide-toggle [(ngModel)]="showResults">View Data</mat-slide-toggle>
+<div class = "controls">
+  <mat-slide-toggle [(ngModel)]="showResults">View Data</mat-slide-toggle>
+  <button mat-raised-button color="primary" (click)="onPauseEvolve()">
+    {{state.label}}
+  </button>
+  <button [disabled]="!saveEnabled" mat-raised-button color="accent" (click)="onSaveProject()">
+    Save Project
+  </button>
+</div>
 <div class="screen">
   <div [ngClass]="{'games': showResults, 'invisible': !showResults}">
     <div *ngFor="let game of games">
@@ -36,13 +44,15 @@
   <div class="data-container">
       <table class="data">
         <tr>
-          <td>Move</td>
           <td>Fire</td>
+          <td>Move / Left</td>
+          <td>Right</td>
           <td>Score</td>
         </tr>
         <tr *ngFor="let aiController of aIControllers">
           <td>{{aiController.mlpData.outputs[0] | number:'1.4-4'}}</td>
           <td>{{aiController.mlpData.outputs[1] | number:'1.4-4'}}</td>
+          <td>{{aiController.mlpData.outputs[2] | number:'1.4-4'}}</td>
           <td>{{aiController.mlpData.score}}</td>
         </tr>
       </table>

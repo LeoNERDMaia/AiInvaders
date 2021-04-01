@@ -3,7 +3,10 @@ import { MatHeaderRowDef } from '@angular/material/table';
 import { AlienShot, Game, Sprite } from './../model/game';
 export class GameController {
 
+  private static TotalMatches = 3
+
   public game: Game
+  private playedMatch: number = 0
 
   public doGameMove(left: boolean, right: boolean, fire: boolean): boolean {
     if (!this.game.active)
@@ -28,7 +31,7 @@ export class GameController {
     if (this.game.currentAlienTime == 0) {
       this.moveAliens()
       this.game.currentAlienTime = this.game.alienTime
-      this.game.alienTime = this.game.alienTime < 10 ? 10 : this.game.alienTime - 1
+      this.game.alienTime = this.game.alienTime < 20 ? 20 : this.game.alienTime - 1
     }
     this.game.score += 1
     return true
@@ -87,7 +90,7 @@ export class GameController {
       if (this.isColliding(this.game.shipShot, alien)) {
         this.game.aliens.splice(this.game.aliens.indexOf(alien), 1)
         this.game.shipShot.active = false
-        this.game.score += 1000
+        this.game.score += 100
       }
     })
 
@@ -122,7 +125,11 @@ export class GameController {
         }
       })
       if (this.isColliding(alienShot, this.game.ship))
-        this.game.active = false
+        if (this.playedMatch < GameController.TotalMatches) {
+          this.game.restartLevel()
+          this.playedMatch ++
+        } else
+          this.game.active = false
     })
   }
 
@@ -190,7 +197,11 @@ export class GameController {
     }
     if (ceilingZero) {
       //this.game.score -= 10000
-      this.game.active = false
+      if (this.playedMatch < GameController.TotalMatches) {
+        this.game.restartLevel()
+        this.playedMatch ++
+      } else
+        this.game.active = false
     }
   }
 }

@@ -14,6 +14,12 @@ export class EditProjectComponent implements OnInit {
   project: Project = new Project()
   hiddenLayers: string
   hiddenSize: string
+  outputType: number = 2
+  generationSize: string
+
+  //outputTypes: number[] = [2, 3]
+
+  outputTypes = [{value: 2, name: "2 Outputs (move and fire)"}, {value: 3, name: "3 Outputs (Left, Right and Fire)"}]
 
   constructor(private userProjectsSerivce: UserProjectsService, private router: Router) { }
 
@@ -21,14 +27,17 @@ export class EditProjectComponent implements OnInit {
   }
 
   onAddProject() {
-    let hiddensCount: number[] = []
-    let mlpChampion: MultiLayerPerceptronData = MultiLayerPerceptron.buildRandomNetwork(Project.inputSize, Project.outputSize, parseInt(this.hiddenLayers), parseInt(this.hiddenSize), 0)
-    let mlpBest: MultiLayerPerceptronData = MultiLayerPerceptron.buildRandomNetwork(Project.inputSize, Project.outputSize, parseInt(this.hiddenLayers), parseInt(this.hiddenSize), 0)
+    let outputSize = this.outputType
+    let mlpChampion: MultiLayerPerceptronData = MultiLayerPerceptron.buildRandomNetwork(Project.inputSize, outputSize, parseInt(this.hiddenLayers), parseInt(this.hiddenSize), 0)
+    let mlpBest: MultiLayerPerceptronData = MultiLayerPerceptron.buildRandomNetwork(Project.inputSize, outputSize, parseInt(this.hiddenLayers), parseInt(this.hiddenSize), 0)
     this.project.mlpChampion = mlpChampion
     this.project.mlpBest = mlpBest
+    this.project.children = parseInt(this.generationSize)
+    this.project.outputSize = outputSize
     this.userProjectsSerivce.updateProject(this.project).subscribe(value =>
       this.back())
   }
+
   back() {
     this.router.navigate(['projects'])
   }

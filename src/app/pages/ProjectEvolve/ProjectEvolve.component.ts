@@ -6,7 +6,7 @@ import { Game } from './../../model/game';
 import { UserProjectsService } from './../../service/UserProjects.service';
 import { Project } from '../../model/project';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { QueryList } from '@angular/core';
 import { ViewChildren } from '@angular/core';
 import { ScoreChartComponent } from '../ScoreChart/ScoreChart.component';
@@ -18,6 +18,9 @@ import { ScoreChartComponent } from '../ScoreChart/ScoreChart.component';
   styleUrls: ['./ProjectEvolve.component.scss']
 })
 export class ProjectEvolveComponent implements OnInit {
+
+  state = {paused: false, label: "Pause"}
+  saveEnabled: boolean = false
 
   evolveRun: any
   finished: boolean = true
@@ -34,13 +37,14 @@ export class ProjectEvolveComponent implements OnInit {
   @ViewChild('scoreChart') scoreChart: ScoreChartComponent
   @ViewChild('generationChart') generationChart: ScoreChartComponent
 
-  constructor(private route: ActivatedRoute, private userProjectService: UserProjectsService) { }
+  constructor(private route: ActivatedRoute, private userProjectService: UserProjectsService, private router: Router) { }
 
   ngOnInit() {
     let projectName = this.route.snapshot.paramMap.get('project');
     this.userProjectService.find(projectName).subscribe(project => {
       this.project = project.data()
       this.generationController = new GenerationController(this.project.mlpChampion, this.project.mlpBest, this.project.children, this.project.mutationProbability, this.project.mutationFactor)
+      this.generationController.generation = this.project.generations
       this.startEvolve()
     })
   }
@@ -50,6 +54,11 @@ export class ProjectEvolveComponent implements OnInit {
   }
 
   private startEvolve() {
+    if (this.state.paused) {
+      this.saveEnabled = true
+      return
+    } else
+      this.saveEnabled = false
     this.generationController.computeGeneration()
     for (let i = 0; i < this.generationController.generationSize; i++) {
       let game: Game = new Game()
@@ -64,6 +73,7 @@ export class ProjectEvolveComponent implements OnInit {
     this.aIControllers = []
     this.gameComponents.forEach((gameComponent, index) => {
       let data: MultiLayerPerceptronData = this.generationController.nextMLP()
+      data.score = 0
       let aiController: AIController = new AIController(gameComponent.gameAnalyser, gameComponent, data)
       this.aIControllers.push(aiController)
     })
@@ -83,7 +93,7 @@ export class ProjectEvolveComponent implements OnInit {
     this.aIControllers.forEach(aiControler => {
       if (aiControler.gameOver()) {
         aiControler.doGame()
-        this.scoreChart.updateData(aiControler.mlpData.score / 200)
+        this.scoreChart.updateData(aiControler.mlpData.score / 400)
         this.generationController.addMLPScore(aiControler.mlpData)
         gamesOver.push(aiControler)
       } else
@@ -95,11 +105,30 @@ export class ProjectEvolveComponent implements OnInit {
     })
 
     if (this.gameComponents.length == 0){
-      setTimeout(() => this.startEvolve(), 500)
-      this.generationChart.updateData(this.generationController.champion.score / 200)
+      setTimeout(() => this.startEvolve(), 150)
+      this.generationChart.updateData(this.generationController.champion.score / 400)
     } else {
-      setTimeout(() => this.doEvolve(), 5)
+      setTimeout(() => this.doEvolve(), 2)
     }
+  }
+
+  public onPauseEvolve() {
+    this.state.paused = !this.state.paused
+    this.state.label = this.state.paused ? "Resume" : "Pause"
+    if (!this.state.paused)
+      setTimeout(() => this.startEvolve(), 50)
+  }
+
+  public onSaveProject() {
+    this.project.mlpChampion = {...this.generationController.champion}
+    this.project.mlpBest = {...this.generationController.best}
+    this.project.generations = this.generationController.generation
+    this.userProjectService.updateProject(this.project).subscribe(value =>
+      this.back())
+  }
+
+  back() {
+    this.router.navigate(['projects'])
   }
 
 }

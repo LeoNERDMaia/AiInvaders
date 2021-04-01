@@ -1,9 +1,9 @@
 export class Game {
   public static rows: number = 5
   public static columns: number = 10
-  public static spacing: number = 0.1
+  public static spacing: number = 0.075
   public static shieldPositionY: number = 0.75
-  public static verticalSpeed: number = 0.05
+  public static verticalSpeed: number = 0.025
   public static alienStartTime: number = 100
   public static maxAlienFire: number = 2
 
@@ -116,16 +116,24 @@ export class Alien extends Sprite {
 export class ShieldBattery extends Sprite {
   constructor() {
     super()
-    this.width = 0.05
+    this.width = 0.045
   }
 }
 
 export class ShipShot extends Sprite {
+  constructor() {
+    super()
+    this.width = 0.03
+  }
   public active: boolean = false
   public shotSpeed: number = 0.005
 }
 
 export class AlienShot extends Sprite {
+  constructor() {
+    super()
+    this.width = 0.03
+  }
   public active: boolean = false
   public shotSpeed: number = 0.005
 }

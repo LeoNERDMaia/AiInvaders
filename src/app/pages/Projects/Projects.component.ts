@@ -27,8 +27,20 @@ export class ProjectsComponent implements OnInit {
     this.router.navigate(["editProject"])
   }
 
+  onPlayGame() {
+    this.router.navigate(["playgame"])
+  }
+
+  onDeleteProject(projectName: string) {
+    this.userProjectsService.remove(projectName).subscribe(() => this.router.navigate(["projects"]))
+  }
+
   onEvolveProject(projectName: string) {
     this.router.navigate([`evolveProject/${projectName}`])
+  }
+
+  onPlayProject(projectName: string) {
+    this.router.navigate([`aigame/${projectName}`])
   }
 
 }

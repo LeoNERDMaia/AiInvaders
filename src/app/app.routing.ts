@@ -1,3 +1,5 @@
+import { AIGameComponent } from './pages/AIGame/AIGame.component';
+import { PlayerGameComponent } from './pages/PlayerGame/PlayerGame.component';
 import { ProjectEvolveComponent } from './pages/ProjectEvolve/ProjectEvolve.component';
 import { EditProjectComponent } from './pages/EditProject/EditProject.component';
 import { AuthGuard } from './service/security.guard';
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard]},
   { path: 'editProject', component: EditProjectComponent, canActivate: [AuthGuard]},
-  { path: 'evolveProject/:project', component: ProjectEvolveComponent, canActivate: [AuthGuard]}
+  { path: 'evolveProject/:project', component: ProjectEvolveComponent, canActivate: [AuthGuard]},
+  { path: 'playgame', component: PlayerGameComponent, canActivate: [AuthGuard]},
+  { path: 'aigame/:project', component: AIGameComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({

@@ -4,18 +4,48 @@
   </mat-card-title>
   <mat-card-content>
     <div class="project_list">
-      <div class="project_line" *ngFor="let project of projects" >
-        <label>{{project.name}}</label>
-        <button mat-raised-button color="primary" (click)="onEvolveProject(project.name)">
-          Evolve
-        </button>
-      </div>
+      <table>
+        <tr>
+          <th class="table-left">Name</th>
+          <th class="table-center">Generations</th>
+          <th class="table-center">Score</th>
+          <th class="table-center">Input</th>
+          <th class="table-center">Hidden</th>
+          <th class="table-center">Output</th>
+          <th class="table-center"></th>
+          <th class="table-center"></th>
+          <th class="table-center"></th>
+        </tr>
+        <tr class="project_line" *ngFor="let project of projects" >
+          <td><label>{{project.name}}</label></td>
+          <td class="table-center"><label>{{project.generations}}</label></td>
+          <td class="table-center"><label>{{project.mlpChampion.score}}</label></td>
+          <td class="table-center"><label>{{project.mlpChampion.inputSize}}</label></td>
+          <td class="table-center"><label>{{project.mlpChampion.hiddenCount}} x {{project.mlpChampion.hiddenSize}}</label></td>
+          <td class="table-center"><label>{{project.mlpChampion.outputSize}}</label></td>
+          <td class="table-center"><button mat-raised-button color="primary" (click)="onEvolveProject(project.name)">
+              Evolve
+              </button>
+          </td>
+          <td class="table-center"><button mat-raised-button color="primary" (click)="onPlayProject(project.name)">
+              Play
+              </button>
+          </td>
+          <td class="table-center"><button mat-raised-button color="primary" (click)="onDeleteProject(project.name)">
+              Delete
+              </button>
+          </td>
+        </tr>
+      </table>
     </div>
   </mat-card-content>
   <mat-card-actions>
     <div>
       <button mat-raised-button color="accent" (click)="onNewProject()">
         Create Project
+      </button>
+      <button mat-raised-button color="primary" (click)="onPlayGame()">
+        Play Game
       </button>
     </div>
   </mat-card-actions>

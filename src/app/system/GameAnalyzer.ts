@@ -7,13 +7,22 @@ export class GameAnalyzer {
     let distanceX: number = 1
     let distanceY: number = 1
     this.game.aliens.forEach(alien => {
-      if (this.game.ship.y - alien.y < distanceY) {
-        distanceY = this.game.ship.y - alien.y
-        if (this.game.ship.x - alien.x < Math.abs(distanceX))
+      if (1 - alien.y <= distanceY) {
+        distanceY = 1 - alien.y
+        if (Math.abs(this.game.ship.x - alien.x) < Math.abs(distanceX))
           distanceX = this.game.ship.x - alien.x
       }
     })
-    return distanceX
+    return 0.5 + (distanceX / 2)
+  }
+
+  public enemyHeight(): number {
+    let height: number = 0
+    this.game.aliens.forEach(alien => {
+      if (alien.y > height)
+        height = alien.y
+    })
+    return height
   }
 
   public mostEnemies(): number {
@@ -21,29 +30,19 @@ export class GameAnalyzer {
     this.game.aliens.forEach(alien => {
       mostOfEnemies += (alien.x - this.game.ship.x) / this.game.aliens.length
     })
-    return mostOfEnemies
+    return 0.5 + mostOfEnemies
   }
 
   public protected(): number {
-    return this.alignedAmong(this.game.shields)
+    return this.closestAmong(this.game.shields)
   }
 
   public lineOfFire(): number {
-    let distanceX: number = 1
-    let distanceY: number = 1
-    this.game.alienShots.forEach(shot => {
-      if (this.game.ship.y - shot.y < distanceY) {
-        distanceY = this.game.ship.y - shot.y
-        if (this.game.ship.x - shot.x < Math.abs(distanceX))
-          distanceX = this.game.ship.x - shot.x
-      }
-    })
-    return distanceX
-    //return this.alignedAmong(this.game.alienShots)
+    return this.closestAmong(this.game.alienShots)
   }
 
   public enemyInSight(): number {
-    return this.alignedAmong(this.game.aliens)
+    return this.closestAmong(this.game.aliens)
   }
 
   private alignedAmong(sprites: Sprite[]): number {
@@ -55,6 +54,16 @@ export class GameAnalyzer {
     return aligned
   }
 
+  private closest(sprites: Sprite[]): number {
+    let distance = 1
+    sprites.forEach(sprite => {
+      let distanceSprite = Math.sqrt(Math.pow(sprite.x - this.game.ship.x, 2) + Math.pow(sprite.y - this.game.ship.y, 2))
+      if (distanceSprite < distance)
+        distance = distanceSprite
+    })
+    return distance
+  }
+
   private aligned(sprite: Sprite) {
     let LE1 = this.game.ship.x - this.game.ship.width / 2
     let RE1 = this.game.ship.x + this.game.ship.width / 2
@@ -62,5 +71,21 @@ export class GameAnalyzer {
     let RE2 = sprite.x + sprite.width / 2
 
     return (LE1 <= RE2 && RE1 >= LE2)
+  }
+
+  private closestAmong(sprites: Sprite[]): number {
+    if (sprites.length == 0)
+      return 0
+    let aligned = 1
+    sprites.forEach(sprite => {
+        let a = this.ammountAlligned(sprite)
+        if (Math.abs(a) < Math.abs(aligned))
+          aligned = a
+    })
+    return 0.5 + (aligned / 2)
+  }
+
+  private ammountAlligned(sprite: Sprite) {
+    return sprite.x - this.game.ship.x
   }
 }

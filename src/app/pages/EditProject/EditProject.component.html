@@ -16,6 +16,17 @@
         <mat-label>Hidden layers size</mat-label>
         <input matInput placeholder="7" [(ngModel)]="hiddenSize">
       </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Generation size (multiple of 5)</mat-label>
+        <input matInput placeholder="20" [(ngModel)]="generationSize">
+      </mat-form-field>
+      <mat-radio-group aria-labelledby="Output type"
+                       class="radio-group"
+                       [(ngModel)]="outputType">
+        <mat-radio-button class="radio-button" *ngFor="let type of outputTypes" [value]="type.value">
+          {{type.name}}
+        </mat-radio-button>
+      </mat-radio-group>
     </div>
   </mat-card-content>
   <mat-card-actions>
