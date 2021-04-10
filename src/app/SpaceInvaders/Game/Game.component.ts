@@ -58,7 +58,7 @@ export class GameComponent implements OnInit, ShipControl {
     this.gameController.doGameMove(this.left, this.right, this.fire)
     this.input0 = this.gameAnalyser.closestEnemyDistance()
     this.input1 = this.gameAnalyser.mostEnemies()
-    this.input2 = this.gameAnalyser.enemyInSight()
+    this.input2 = this.gameAnalyser.enemyHeight()
     this.input3 = this.gameAnalyser.lineOfFire()
     this.input4 = this.gameAnalyser.protected()
   }

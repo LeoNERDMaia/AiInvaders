@@ -22,7 +22,7 @@ export class GenerationController {
     const newData: MultiLayerPerceptronData = {...father}
     newData.weightValues = this.coupleArray(father.weightValues, mother.weightValues, mutationProbability)
     if (Math.random() <= mutationProbability) {
-      newData.bias += this.mutationFactor - this.mutationFactor / 2
+      newData.bias += (Math.random() * this.mutationFactor) - (this.mutationFactor / 2)
     }
     newData.score = 0
     return newData
@@ -130,7 +130,7 @@ export class GenerationController {
       else
         newValue = array2[index]
       if (Math.random() <= mutationProbability) {
-        newValue *= this.mutationFactor
+        newValue += (Math.random() * this.mutationFactor) - (this.mutationFactor / 2)
       }
       newArray.push(newValue)
     })

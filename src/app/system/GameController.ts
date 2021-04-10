@@ -103,6 +103,7 @@ export class GameController {
 
     if (this.game.aliens.length == 0) {
       this.game.alienTime *= 2
+      this.game.score += 5000
       this.game.restartLevel()
     }
   }
@@ -196,7 +197,7 @@ export class GameController {
         })
     }
     if (ceilingZero) {
-      //this.game.score -= 10000
+      this.game.score -= 2500
       if (this.playedMatch < GameController.TotalMatches) {
         this.game.restartLevel()
         this.playedMatch ++

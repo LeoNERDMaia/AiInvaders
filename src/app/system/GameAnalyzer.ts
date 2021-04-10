@@ -13,7 +13,7 @@ export class GameAnalyzer {
           distanceX = this.game.ship.x - alien.x
       }
     })
-    return 0.5 + (distanceX / 2)
+    return distanceX
   }
 
   public enemyHeight(): number {
@@ -30,7 +30,7 @@ export class GameAnalyzer {
     this.game.aliens.forEach(alien => {
       mostOfEnemies += (alien.x - this.game.ship.x) / this.game.aliens.length
     })
-    return 0.5 + mostOfEnemies
+    return mostOfEnemies
   }
 
   public protected(): number {
@@ -82,7 +82,7 @@ export class GameAnalyzer {
         if (Math.abs(a) < Math.abs(aligned))
           aligned = a
     })
-    return 0.5 + (aligned / 2)
+    return aligned * 2
   }
 
   private ammountAlligned(sprite: Sprite) {

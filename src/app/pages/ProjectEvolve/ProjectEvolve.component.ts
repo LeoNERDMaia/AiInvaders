@@ -82,6 +82,7 @@ export class ProjectEvolveComponent implements OnInit {
   }
 
   private doEvolve() {
+    let running: boolean = true
     this.gameComponents.forEach(gameComponent => {
       gameComponent.doGameMove()
       if (!gameComponent.game.active) {
@@ -107,8 +108,9 @@ export class ProjectEvolveComponent implements OnInit {
     if (this.gameComponents.length == 0){
       setTimeout(() => this.startEvolve(), 150)
       this.generationChart.updateData(this.generationController.champion.score / 400)
+      running = false
     } else {
-      setTimeout(() => this.doEvolve(), 2)
+      setTimeout(() => this.doEvolve(), 0)
     }
   }
 

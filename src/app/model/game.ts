@@ -51,6 +51,9 @@ export class Game {
     this.buildShield(0.375)
     this.buildShield(0.575)
     this.buildShield(0.775)
+
+    this.ship.x = 0.5
+    this.shipShot.active = false
   }
 
   private buildRow(startY: number, alienType: string, rows: number = 2) {
