@@ -27,6 +27,7 @@ export class GameComponent implements OnInit, ShipControl {
   input2: number = 0
   input3: number = 0
   input4: number = 0
+  input5: number = 0
 
   gameRun
 
@@ -61,6 +62,7 @@ export class GameComponent implements OnInit, ShipControl {
     this.input2 = this.gameAnalyser.enemyHeight()
     this.input3 = this.gameAnalyser.lineOfFire()
     this.input4 = this.gameAnalyser.protected()
+    this.input5 = this.gameAnalyser.horizontalSpeed()
   }
 
 }

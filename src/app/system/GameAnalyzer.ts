@@ -45,6 +45,10 @@ export class GameAnalyzer {
     return this.closestAmong(this.game.aliens)
   }
 
+  public horizontalSpeed(): number {
+    return this.game.alienTime * (this.game.horizontalSpeed / Math.abs(this.game.horizontalSpeed)) / 100
+  }
+
   private alignedAmong(sprites: Sprite[]): number {
     let aligned = 0
     sprites.forEach(sprite => {

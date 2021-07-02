@@ -6,7 +6,7 @@ export class Project {
   // Enemy in sight
   // Line of fire
   // Behind barrier
-  public static inputSize = 6
+  public static inputSize = 7
 
   name: string
   generations: number = 0

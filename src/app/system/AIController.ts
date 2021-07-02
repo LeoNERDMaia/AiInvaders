@@ -23,7 +23,8 @@ export class AIController {
                             this.analyser.enemyHeight(),
                             //this.analyser.enemyInSight(),
                             this.analyser.lineOfFire(),
-                            this.analyser.protected()]
+                            this.analyser.protected(),
+                            this.analyser.horizontalSpeed()]
     this.mlp.data.inputs = inputs
     this.mlp.propagate()
     if (this.mlp.data.outputs.length == 2) {

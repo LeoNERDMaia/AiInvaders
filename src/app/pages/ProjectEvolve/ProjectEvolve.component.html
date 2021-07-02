@@ -24,6 +24,16 @@
         <td>{{generationController?.best.score}}</td>
       </tr>
     </table>
+    <table class="data">
+      <tr>
+        <td>Champion cut</td>
+        <td>Mutation probability</td>
+      </tr>
+      <tr>
+        <td>{{generationController?.championGeneration}}</td>
+        <td>{{generationController?.temporaryMutationProbability | number:'1.4-4'}}</td>
+      </tr>
+    </table>
   </div>
 </div>
 <div class = "controls">
@@ -44,12 +54,14 @@
   <div class="data-container">
       <table class="data">
         <tr>
+          <td>#</td>
           <td>Fire</td>
           <td>Move / Left</td>
           <td>Right</td>
           <td>Score</td>
         </tr>
-        <tr *ngFor="let aiController of aIControllers">
+        <tr *ngFor="let aiController of aIControllers; let i = index">
+          <td>{{i}}</td>
           <td>{{aiController.mlpData.outputs[0] | number:'1.4-4'}}</td>
           <td>{{aiController.mlpData.outputs[1] | number:'1.4-4'}}</td>
           <td>{{aiController.mlpData.outputs[2] | number:'1.4-4'}}</td>
